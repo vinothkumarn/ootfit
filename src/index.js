@@ -11,28 +11,34 @@ import {
   Text,
   View
 } from 'react-native';
-import Launcher from './Launcher';
-import Feed from './components/Feed/Feed';
 import { StackNavigator } from 'react-navigation';
-import App from './App'
-import SecondScreen from './SecondScreen'
+import Login from './components/Login/Login';
+import Feed from './components/Feed/Feed';
+import { DrawerNavigator } from 'react-navigation';
 
 export default class ootfit extends Component {
   static navigationOptions = {
+    header: null ,
     title: 'Welcome',
   };
   render() {
     const { navigation } = this.props;
     return (
-      <App navigation = { navigation }/>
+      <Login navigation = { navigation } />
     );
   }
 }
 
-const ootfitNavigator = StackNavigator({
-  Main: { screen: ootfit },
+const ootfitDrawerNavigator = DrawerNavigator({
   NewsFeed : { screen: Feed },
-  SecondScreen : { screen: SecondScreen },
+},{
+  drawerWidth: 300,
+  drawerPosition: 'left',
 });
 
-AppRegistry.registerComponent('ootfit', () => ootfitNavigator);
+const ootfitStackNavigator = StackNavigator({
+  Main: { screen: ootfit },
+  ootfitDrawerNavigator : { screen: ootfitDrawerNavigator },
+},{ headerMode: 'none'});
+
+AppRegistry.registerComponent('ootfit', () => ootfitStackNavigator);

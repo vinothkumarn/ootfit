@@ -1,20 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default class Feed extends Component{
-  static navigationOptions = {
-    title: 'Feed',
-  };
-  render(){
-    return (
-       <View style={styles.wrapper}>
-          <View>
-                <Text style={styles.title}> Welcome to Ootfit Feed</Text>
-          </View>
-       </View>
-    )
-  }
-}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -29,3 +15,28 @@ const styles = StyleSheet.create({
     marginTop: 10
   }
 });
+
+const Feed = ()  => {
+
+    return (
+       <View style={styles.wrapper}>
+          <View>
+                <Text style={styles.title}> Welcome to Ootfit Feed</Text>
+          </View>
+       </View>
+    );
+  }
+
+Feed.navigationOptions = {
+  title: 'Feed',
+  header: null,
+  drawer: {
+      icon: () => (
+        <Image
+          source={require('../../images/home.png')}
+          style={[styles.tabIcon, {tintColor: 'black'}]}
+        />
+  )}
+};
+
+export default Feed

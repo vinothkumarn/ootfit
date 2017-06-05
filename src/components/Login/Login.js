@@ -1,27 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 
-export default class Login extends Component{
-  render(){
-    return (
-       <View style={styles.wrapper}>
-          <View style={styles.logoWrapper}>
-               <Image
-                  style={styles.logo}
-                  source={require('../../images/logo.png')}
-                  />
-                <Text style={styles.title}> Welcome to Ootfit</Text>
-                <Text style={styles.subtitle}> Finding fashion stores in your city made simple</Text>
-          </View>
-          <View style={styles.bottom}>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate('NewsFeed')} title="Go to Feed" style={styles.buttonContainer}>
-                 <Text style={styles.buttonText}> CONTINUE </Text>
-              </TouchableOpacity>
-          </View>
-       </View>
-    )
-  }
-}
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -70,3 +49,37 @@ const styles = StyleSheet.create({
      opacity: 0.7
   }
 });
+
+const Login  = (props)  => {
+  const { navigate } = props.navigation;
+
+    return (
+       <View style={styles.wrapper}>
+          <View style={styles.logoWrapper}>
+               <Image
+                  style={styles.logo}
+                  source={require('../../images/logo.png')}
+                  />
+                <Text style={styles.title}> Welcome to Ootfit</Text>
+                <Text style={styles.subtitle}> Finding fashion stores in your city made simple</Text>
+          </View>
+          <View style={styles.bottom}>
+              <TouchableOpacity onPress={() => navigate('NewsFeed')} title="Go to Feed" style={styles.buttonContainer}>
+                 <Text style={styles.buttonText}> CONTINUE </Text>
+              </TouchableOpacity>
+          </View>
+       </View>
+    );
+}
+
+/*Login.navigationOptions = {
+  drawer: {
+      icon: () => (
+        <Image
+          source={require('../../images/home.png')}
+          style={[styles.tabIcon, {tintColor: 'black'}]}
+        />
+  )}
+}; */
+
+export default Login

@@ -29,16 +29,20 @@ export default class ootfit extends Component {
   }
 }
 
+const ootfitSubStackNavigator = StackNavigator({
+  Main: { screen: Feed },
+},{headerMode: 'screen'});
+
 const ootfitDrawerNavigator = DrawerNavigator({
-  NewsFeed : { screen: Feed },
+  NewsFeed : { screen: ootfitSubStackNavigator },
 },{
   drawerWidth: 300,
   drawerPosition: 'left',
 });
 
-const ootfitStackNavigator = StackNavigator({
+const ootfitWelcomeStackNavigator = StackNavigator({
   Main: { screen: ootfit },
   ootfitDrawerNavigator : { screen: ootfitDrawerNavigator },
 },{ headerMode: 'none'});
 
-AppRegistry.registerComponent('ootfit', () => ootfitStackNavigator);
+AppRegistry.registerComponent('ootfit', () => ootfitWelcomeStackNavigator);

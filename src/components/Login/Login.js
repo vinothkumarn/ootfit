@@ -64,7 +64,7 @@ const Login  = (props)  => {
                 <Text style={styles.subtitle}> Finding fashion stores in your city made simple</Text>
           </View>
           <View style={styles.bottom}>
-              <TouchableOpacity onPress={() => navigate('NewsFeed')} title="Go to Feed" style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigate('NewsFeed',{ props })} title="Go to Feed" style={styles.buttonContainer}>
                  <Text style={styles.buttonText}> CONTINUE </Text>
               </TouchableOpacity>
           </View>

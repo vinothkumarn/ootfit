@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
   wrapper: {
     backgroundColor: '#ecf0f1',
     flex:1,
+    flexDirection: 'column',
+    flexWrap: 'wrap'
   },
   title:{
     fontSize: 35,
@@ -35,6 +37,8 @@ const Feed = (props)  => {
             {key: 'PRO1450', price: '$27', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19092.jpg'},
           ]}
           renderItem={({item}) => <FeedCardView item = { item } />}
+          numColumns={2}
+          columnWrapperStyle={{ margin:10}}
         />
       </View>
       </View>

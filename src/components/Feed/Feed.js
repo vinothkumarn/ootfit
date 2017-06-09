@@ -4,8 +4,8 @@ import FeedCardView from './FeedCardView';
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#FFF',
-    flex: 1,
+    backgroundColor: '#ecf0f1',
+    flex:1,
   },
   title:{
     fontSize: 35,
@@ -21,21 +21,23 @@ const Feed = (props)  => {
     const { navigate } = props.navigation;
     global.navigateFeed = navigate;
     return (
-      <View style={styles.wrapper}>
-      <FlatList
-        data={[
-          {key: 'Devin', uri: 'http://g.nordstromimage.com/ImageGallery/store/product/Zoom/10/_10376730.jpg'},
-          {key: 'Jackson', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
-          {key: 'James', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
-          {key: 'Joel', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
-          {key: 'John', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
-          {key: 'Jillian', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
-          {key: 'Jimmy', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
-          {key: 'Julie', uri: 'https://img.promgirl.com/_img/PGPRODUCTS/1417606/320/red-ivory-dress-DJ-1435-e.jpg'},
-        ]}
-        renderItem={({item}) => <FeedCardView item = { item } />}
-      />
-    </View>
+      <View style={{flex: 1}}>
+        <View style={styles.wrapper}>
+        <FlatList
+          data={[
+            {key: 'PRO1453', price: '$20', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19085.jpg'},
+            {key: 'PRO1454', price: '$10', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19086.jpg'},
+            {key: 'PRO1455', price: '$15', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19087.jpg'},
+            {key: 'PRO1456', price: '$12', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19088.jpg'},
+            {key: 'PRO1457', price: '$18', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19089.jpg'},
+            {key: 'PRO1458', price: '$16', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19095.jpg'},
+            {key: 'PRO1459', price: '$19', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19096.jpg'},
+            {key: 'PRO1450', price: '$27', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19092.jpg'},
+          ]}
+          renderItem={({item}) => <FeedCardView item = { item } />}
+        />
+      </View>
+      </View>
 
     );
   }

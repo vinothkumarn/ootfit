@@ -10,22 +10,40 @@ const styles = StyleSheet.create({
   title:{
     fontSize: 35,
     fontFamily: 'notoserif',
-    opacity: 0.9,
+    opacity: 1,
     fontWeight: 'bold',
-    marginTop: 10
+    marginTop: 5,
   }
 });
 
 const FeedCardView  = (props)  => {
     return (
-        <View style={styles.wrapper}>
-           <View>
-             <Image source={{uri: props.item.uri}} style={{width: 200, height: 200}}/>
-           </View>
-           <View>
-                 <Text style={styles.title}> {props.item.key}</Text>
-           </View>
-        </View>
+             <View style={{flex: 1, flexDirection: 'row', margin:10}}>
+                  <View style={{flex:1,width: 50, height: 250, backgroundColor: 'powderblue',marginRight:5}}>
+                         <TouchableOpacity style={{flex: 1}} title="See Product">
+                            <View style={{flex: 1}}>
+                                <View style={{flex: 3, backgroundColor: '#fff'}}>
+                                    <Image source={{uri: props.item.uri}} style={{width: 200, height: 200}}/>
+                                </View>
+                                <View style={{flex: 1, backgroundColor: '#bdc3c7'}}>
+                                      <Text style={styles.title}> {props.item.price}</Text>
+                                </View>
+                            </View>
+                         </TouchableOpacity>
+                  </View>
+                  <View style={{flex:1,width: 50, height: 250, backgroundColor: 'skyblue'}}>
+                        <TouchableOpacity style={{flex: 1}} title="See Product">
+                           <View style={{flex: 1}}>
+                               <View style={{flex: 3, backgroundColor: '#fff'}}>
+                                   <Image source={{uri: props.item.uri}} style={{width: 200, height: 200}}/>
+                               </View>
+                               <View style={{flex: 1, backgroundColor: '#bdc3c7'}}>
+                                       <Text style={styles.title}> {props.item.price}</Text>
+                               </View>
+                           </View>
+                        </TouchableOpacity>
+                  </View>
+             </View>
       );
   }
 

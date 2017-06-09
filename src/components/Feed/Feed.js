@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
-
+import { View, FlatList, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
+import FeedCardView from './FeedCardView';
 
 const styles = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#ecf0f1',
+    backgroundColor: '#FFF',
     flex: 1,
   },
   title:{
@@ -21,16 +21,27 @@ const Feed = (props)  => {
     const { navigate } = props.navigation;
     global.navigateFeed = navigate;
     return (
-       <View style={styles.wrapper}>
-          <View>
-                <Text style={styles.title}> Welcome to Ootfit Feed</Text>
-          </View>
-       </View>
+      <View style={styles.wrapper}>
+      <FlatList
+        data={[
+          {key: 'Devin', uri: 'http://g.nordstromimage.com/ImageGallery/store/product/Zoom/10/_10376730.jpg'},
+          {key: 'Jackson', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
+          {key: 'James', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
+          {key: 'Joel', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
+          {key: 'John', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
+          {key: 'Jillian', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
+          {key: 'Jimmy', uri: 'https://images.asos-media.com/products/boohoo-floral-print-pom-pom-trim-bardot-dress/7883292-1-multi'},
+          {key: 'Julie', uri: 'https://img.promgirl.com/_img/PGPRODUCTS/1417606/320/red-ivory-dress-DJ-1435-e.jpg'},
+        ]}
+        renderItem={({item}) => <FeedCardView item = { item } />}
+      />
+    </View>
+
     );
   }
 
 Feed.navigationOptions = {
-  title: 'ootfit',
+  title: 'Home',
   headerLeft:
   <TouchableOpacity onPress={() => navigateFeed('DrawerOpen')} style={{height:40, width:40}}>
   <Image

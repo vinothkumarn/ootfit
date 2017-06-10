@@ -14,6 +14,7 @@ import {
 import { StackNavigator } from 'react-navigation';
 import Login from './components/Login/Login';
 import Feed from './components/Feed/Feed';
+import ProductPage from './components/ProductDetails/ProductPage';
 import { DrawerNavigator } from 'react-navigation';
 
 export default class ootfit extends Component {
@@ -31,7 +32,8 @@ export default class ootfit extends Component {
 
 const ootfitSubStackNavigator = StackNavigator({
   Main: { screen: Feed },
-},{headerMode: 'screen'});
+  ProductPage: { screen: ProductPage },
+});
 
 const ootfitDrawerNavigator = DrawerNavigator({
   NewsFeed : { screen: ootfitSubStackNavigator },
@@ -43,6 +45,6 @@ const ootfitDrawerNavigator = DrawerNavigator({
 const ootfitWelcomeStackNavigator = StackNavigator({
   Main: { screen: ootfit },
   ootfitDrawerNavigator : { screen: ootfitDrawerNavigator },
-},{ headerMode: 'none'});
+},{headerMode: 'none'});
 
 AppRegistry.registerComponent('ootfit', () => ootfitWelcomeStackNavigator);

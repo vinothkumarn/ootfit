@@ -17,10 +17,11 @@ const styles = StyleSheet.create({
 });
 
 const FeedCardView  = (props)  => {
+    //const { navigate } = props.navigation;
     return (
       <View style={{flex: 1, flexDirection: 'row',}}>
            <View style={{flex:1,width: 50, height: 250, backgroundColor: 'powderblue',marginRight:5}}>
-                  <TouchableOpacity style={{flex: 1}} title="See Product">
+                  <TouchableOpacity onPress={() => navigateFeed('ProductPage',{ product: props.item.key })} style={{flex: 1}} title="See Product">
                      <View style={{flex: 1}}>
                          <View style={{flex: 3, backgroundColor: '#bdc'}}>
                              <Image source={{uri: props.item.uri}} style={{width: 200, height: 200}}/>

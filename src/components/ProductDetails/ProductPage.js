@@ -1,5 +1,23 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
+import { TabNavigator } from "react-navigation";
+
+const RecentChatsScreen = (props)  => {
+    return (
+      <Text style={styles.title}> Product ID  { props.screenProps.productid }</Text>
+    );
+  }
+
+const AllContactsScreen = (props)  => {
+    return (
+      <Text style={styles.title}> Product ID 2 { props.screenProps.productid }</Text>
+    );
+  }
+
+const MainScreenNavigator = TabNavigator({
+  Recent: { screen: RecentChatsScreen },
+  All: { screen: AllContactsScreen },
+});
 
 const styles = StyleSheet.create({
   wrapper: {
@@ -22,7 +40,7 @@ const ProductPage = (props)  => {
     return (
       <View style={{flex: 1}}>
         <View style={styles.wrapper}>
-               <Text style={styles.title}> Product ID : {props.navigation.state.params.product} </Text>
+               <MainScreenNavigator screenProps={{ productid: props.navigation.state.params.product }}/>
       </View>
       </View>
 

@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
 });
 
 const FeedCardView  = (props)  => {
-    //const { navigate } = props.navigation;
     return (
       <View style={{flex: 1, flexDirection: 'row',}}>
            <View style={{flex:1,width: 50, height: 250, backgroundColor: 'powderblue',marginRight:5}}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, FlatList, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
+import { ActivityIndicator, ListView, Text, View } from 'react-native';
+import { FlatList, StyleSheet,Image,TouchableOpacity } from 'react-native';
 import FeedCardView from './FeedCardView';
 
 const styles = StyleSheet.create({
@@ -18,35 +19,34 @@ const styles = StyleSheet.create({
   }
 });
 
-const Feed = (props)  => {
-
+export default class Feed extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true
+    }
     const { navigate } = props.navigation;
     global.navigateFeed = navigate;
-    return (
-      <View style={{flex: 1}}>
-        <View style={styles.wrapper}>
-        <FlatList
-          data={[
-            {key: 'PRO1453', price: '$20', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19085.jpg'},
-            {key: 'PRO1454', price: '$10', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19086.jpg'},
-            {key: 'PRO1455', price: '$15', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19087.jpg'},
-            {key: 'PRO1456', price: '$12', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19088.jpg'},
-            {key: 'PRO1457', price: '$18', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19089.jpg'},
-            {key: 'PRO1458', price: '$16', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19095.jpg'},
-            {key: 'PRO1459', price: '$19', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19096.jpg'},
-            {key: 'PRO1450', price: '$27', uri: 'https://s3.eu-central-1.amazonaws.com/visiondata.io/photos/19092.jpg'},
-          ]}
-          renderItem={({item}) => <FeedCardView item = { item } />}
-          numColumns={2}
-          columnWrapperStyle={{ margin:10}}
-        />
-      </View>
-      </View>
-
-    );
   }
 
-  Feed.navigationOptions = {
+  componentDidMount() {
+    return fetch('https://s3.eu-central-1.amazonaws.com/ootfit.com/json/feed.json')
+      .then((response) => response.json())
+      .then((responseJson) => {
+        let ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.setState({
+          isLoading: false,
+          dataSource: responseJson.products,
+        }, function() {
+          // do something with new state
+        });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
+
+  static navigationOptions = {
     title: 'Home',
     headerLeft:
     <TouchableOpacity onPress={() => navigateFeed('DrawerOpen')} style={{height:40, width:40}}>
@@ -67,4 +67,26 @@ const Feed = (props)  => {
       },
   };
 
-export default Feed
+  render() {
+    if (this.state.isLoading) {
+      return (
+        <View>
+          <ActivityIndicator />
+        </View>
+      );
+    }
+
+    return (
+      <View style={{flex: 1}}>
+        <View style={styles.wrapper}>
+        <FlatList
+          data={this.state.dataSource}
+          renderItem={({item}) => <FeedCardView item = { item } />}
+          numColumns={2}
+          columnWrapperStyle={{ margin:10}}
+        />
+      </View>
+      </View>
+    );
+  }
+}

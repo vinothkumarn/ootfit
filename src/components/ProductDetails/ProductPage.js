@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { View, FlatList, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
 import { TabNavigator } from "react-navigation";
+import CustomFetch from '../Fetch/CustomFetch';
 
 const RecentChatsScreen = (props)  => {
     return (
-      <Text style={styles.title}> Product ID  { props.screenProps.productid }</Text>
+      <View>
+      <CustomFetch screenProps={{ productid: props.screenProps.productid }} />
+      </View>
     );
   }
 

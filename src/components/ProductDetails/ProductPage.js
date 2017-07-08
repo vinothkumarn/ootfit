@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, FlatList, Text, StyleSheet,Image,TouchableOpacity } from 'react-native';
 import { TabNavigator } from "react-navigation";
 import CustomFetch from '../Fetch/CustomFetch';
+import MapView from 'react-native-maps';
 
 const RecentChatsScreen = (props)  => {
     return (
@@ -13,13 +14,26 @@ const RecentChatsScreen = (props)  => {
 
 const AllContactsScreen = (props)  => {
     return (
-      <Text style={styles.title}> Product ID 2 { props.screenProps.productid }</Text>
+
+      <View style ={styles.container}>
+        <MapView
+          style={styles.map}
+          region={{
+            latitude: 37.78825,
+            longitude: -122.4324,
+            latitudeDelta: 0.015,
+            longitudeDelta: 0.0121,
+          }}
+        >
+        </MapView>
+        {/* <Text style={styles.title}> Product ID { props.screenProps.productid }</Text> */}
+      </View>
     );
   }
 
 const MainScreenNavigator = TabNavigator({
-  Recent: { screen: RecentChatsScreen },
-  All: { screen: AllContactsScreen },
+  Details: { screen: RecentChatsScreen },
+  Location: { screen: AllContactsScreen },
 });
 
 const styles = StyleSheet.create({
@@ -35,7 +49,17 @@ const styles = StyleSheet.create({
     opacity: 0.9,
     fontWeight: 'bold',
     marginTop: 10
-  }
+  },
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    height: 400,
+    width: 400,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
 });
 
 const ProductPage = (props)  => {
@@ -51,7 +75,7 @@ const ProductPage = (props)  => {
   }
 
   ProductPage.navigationOptions = {
-    title: 'Details',
+    title: 'Product Details',
     headerStyle: {
       backgroundColor:"#3498db",
     },

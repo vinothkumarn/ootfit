@@ -18,6 +18,7 @@ import Feed from './components/Feed/Feed';
 import ProductPage from './components/ProductDetails/ProductPage';
 import { DrawerNavigator } from 'react-navigation';
 import { DrawerItems } from 'react-navigation';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 export default class ootfit extends Component {
   static navigationOptions = {
@@ -39,22 +40,21 @@ const ootfitSubStackNavigator = StackNavigator({
 
 const CustomDrawerContentComponent = (props) => (
   <View style={styles.container}>
-    <View style={{backgroundColor: '#3498db',height: 100}}>
+    {/* <View style={{backgroundColor: '#3498db',height: 100}}>
                 <View style={{ flex:1 , flexDirection: 'row',justifyContent: 'center',}}>
                               <Image
                                     source={require('./images/logo.png')}
                                     style={{height:75, width:75, margin: 10 }}
                                   />
 
+
                 </View>
-    </View>
+    </View> */}
     <View>
         <TouchableOpacity onPress={() => navigateFeed('Main')} style={{backgroundColor: '#bdc3c7',height: 50}}>
         <View style={{ flex:1 , flexDirection: 'row'}}>
-                      <Image
-                            source={require('./images/home.png')}
-                            style={{height:25, width:25, marginTop: 10, marginLeft: 10 }}
-                          />
+
+                      <FontAwesome style={{fontSize: 25, marginTop: 10, marginLeft: 10}} >{Icons.home}</FontAwesome>
                       <Text style={{
                                 height:25,
                                 marginTop: 10,
